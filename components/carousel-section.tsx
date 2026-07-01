@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const carouselImages = [
+const originalImages = [
   { src: '/carousel-1.jpg', alt: 'Arepas paquete 10 unidades' },
   { src: '/carousel-2.jpg', alt: 'Arepas paquete 50 unidades' },
   { src: '/carousel-3.jpg', alt: 'Arepas paquete individual' },
@@ -13,32 +13,33 @@ const carouselImages = [
 
 const IMAGES_TO_SHOW = 3;
 
+// Duplicate images for infinite carousel
+const carouselImages = [...originalImages, ...originalImages, ...originalImages];
+
 export function CarouselSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
+      setCurrentIndex((prev) => (prev + 1));
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    // Reset to beginning when reaching the end for infinite loop
+    if (currentIndex >= originalImages.length * 2) {
+      setCurrentIndex(0);
+    }
+  }, [currentIndex]);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
-  };
-
-  // Get 3 images to display starting from currentIndex
-  const getVisibleImages = () => {
-    const visible = [];
-    for (let i = 0; i < IMAGES_TO_SHOW; i++) {
-      visible.push(carouselImages[(currentIndex + i) % carouselImages.length]);
-    }
-    return visible;
+    setCurrentIndex((prev) => prev + 1);
   };
 
   return (
@@ -82,12 +83,12 @@ export function CarouselSection() {
 
         {/* Dots Indicator */}
         <div className="flex justify-center gap-2 mt-4">
-          {carouselImages.map((_, index) => (
+          {originalImages.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors ${
-                index === currentIndex ? 'bg-primary' : 'bg-primary/30'
+                index === (currentIndex % originalImages.length) ? 'bg-primary' : 'bg-primary/30'
               }`}
               aria-label={`Go to image ${index + 1}`}
             />
