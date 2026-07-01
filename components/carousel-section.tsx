@@ -8,7 +8,10 @@ const carouselImages = [
   { src: '/carousel-1.jpg', alt: 'Arepas paquete 10 unidades' },
   { src: '/carousel-2.jpg', alt: 'Arepas paquete 50 unidades' },
   { src: '/carousel-3.jpg', alt: 'Arepas paquete individual' },
+  { src: '/carousel-4.jpg', alt: 'Arepas paquete individual rojo' },
 ];
+
+const IMAGES_TO_SHOW = 3;
 
 export function CarouselSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,15 +32,24 @@ export function CarouselSection() {
     setCurrentIndex((prev) => (prev + 1) % carouselImages.length);
   };
 
+  // Get 3 images to display starting from currentIndex
+  const getVisibleImages = () => {
+    const visible = [];
+    for (let i = 0; i < IMAGES_TO_SHOW; i++) {
+      visible.push(carouselImages[(currentIndex + i) % carouselImages.length]);
+    }
+    return visible;
+  };
+
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
       <div className="relative w-full group">
         {/* Carousel Container */}
         <div className="relative w-full overflow-hidden rounded-lg shadow-lg">
-          <div className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+          <div className="flex gap-4 transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * (100 / IMAGES_TO_SHOW)}%)` }}>
             {carouselImages.map((image, index) => (
-              <div key={index} className="w-full flex-shrink-0">
+              <div key={index} className="w-full flex-shrink-0" style={{ width: `${100 / IMAGES_TO_SHOW}%` }}>
                 <div className="relative w-full h-64 sm:h-80 lg:h-96">
                   <Image
                     src={image.src}
