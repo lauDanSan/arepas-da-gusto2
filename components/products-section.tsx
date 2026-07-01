@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { Card } from '@/components/ui/card';
+import { CarouselSection } from './carousel-section';
 
 const products = [
   {
@@ -47,8 +48,16 @@ export function ProductsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {products.map((product) => (
+        {/* Carousel Section */}
+        <CarouselSection />
+
+        {/* Products Grid */}
+        <div className="mt-12 sm:mt-16">
+          <h3 className="text-2xl sm:text-3xl font-bold text-primary-foreground text-center mb-8 sm:mb-12">
+            Tipos de Arepas
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {products.map((product) => (
             <div key={product.id} className="hover:scale-105 sm:hover:scale-110 transition-transform duration-300">
               <Card 
                 className="bg-card text-card-foreground border-0 h-full cursor-pointer shadow-md hover:shadow-2xl transition-shadow duration-300"
@@ -76,7 +85,8 @@ export function ProductsSection() {
                 </div>
               </Card>
             </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
