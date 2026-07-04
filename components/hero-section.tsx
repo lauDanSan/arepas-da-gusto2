@@ -15,7 +15,7 @@ export function HeroSection() {
             </h1>
             
             <p className="text-base sm:text-lg text-foreground/80">
-              Distribuimos arepas crudas de calidad para que disfrutes donde estés.
+              Distribuimos arepas precocidas de calidad para que disfrutes donde estés.
             </p>
 
             {/* Features */}

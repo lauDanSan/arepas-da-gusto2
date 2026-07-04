@@ -25,7 +25,7 @@ export function StorySection() {
               Nuestra Trayectoria
             </h2>
             <p className="text-lg text-foreground/80 leading-relaxed text-justify">
-              Somos una empresa familiar con más de 15 años de experiencia en la producción y distribución de arepas crudas de alta calidad. Nuestro compromiso es brindar productos frescos, naturales y deliciosos a cada hogar.
+              Somos una empresa familiar con más de 15 años de experiencia en la producción y distribución de arepas precocidas de alta calidad. Nuestro compromiso es brindar productos frescos, naturales y deliciosos a cada hogar.
             </p>
             <p className="text-lg text-foreground/80 leading-relaxed text-justify">
               Creemos que las arepas son más que comida, son momentos para compartir en familia. Por eso trabajamos con dedicación para ofrecerte lo mejor.

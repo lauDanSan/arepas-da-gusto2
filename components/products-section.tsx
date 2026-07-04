@@ -44,7 +44,7 @@ export function ProductsSection() {
             Nuestros Productos
           </h2>
           <p className="text-base sm:text-lg text-primary-foreground/80">
-            Arepas crudas listas para preparar en casa
+            Arepas precocidas listas para preparar en casa
           </p>
         </div>
 
