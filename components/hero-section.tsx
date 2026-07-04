@@ -1,7 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 export function HeroSection() {
   return (
@@ -65,7 +65,7 @@ export function HeroSection() {
           <div className="relative h-96 lg:h-screen flex items-center justify-center">
             <div className="relative w-full h-full max-w-md">
               <Image
-                src="/arepa-package.jpg"
+                src="/bultos.jpeg"
                 alt="Arepas Da' Gusto2"
                 fill
                 className="object-cover rounded-lg"

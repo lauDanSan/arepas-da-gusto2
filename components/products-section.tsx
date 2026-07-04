@@ -1,7 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import { Card } from '@/components/ui/card';
+import Image from 'next/image';
 import { CarouselSection } from './carousel-section';
 
 const products = [
@@ -10,28 +10,28 @@ const products = [
     name: 'Arepa Normal',
     quantity: '5 unidades',
     description: 'Perfecta para una comida rápida',
-    image: '/arepa-drawing.jpg'
+    image: '/logo.png'
   },
   {
     id: 2,
     name: 'Arepa Normal',
     quantity: '10 unidades',
     description: 'Para la familia completa',
-    image: '/arepa-drawing.jpg'
+    image: '/logo.png'
   },
   {
     id: 3,
     name: 'Arepa Frisby',
     quantity: '50 unidades',
     description: 'Ideal para eventos y negocios',
-    image: '/arepa-drawing.jpg'
+    image: '/logo.png'
   },
   {
     id: 4,
     name: 'Arepa Burger',
     quantity: '10 unidades',
     description: 'Rellenas y deliciosas',
-    image: '/arepa-drawing.jpg'
+    image: '/logo.png'
   },
 ];
 
