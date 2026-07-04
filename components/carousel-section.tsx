@@ -21,6 +21,13 @@ const carouselImages = [
 ];
 
 const START_INDEX = IMAGES_TO_SHOW;
+const TOTAL_IMAGES = originalImages.length;
+
+const normalizeToRealIndex = (index: number) => {
+  const relative = index - START_INDEX;
+  const wrapped = ((relative % TOTAL_IMAGES) + TOTAL_IMAGES) % TOTAL_IMAGES;
+  return START_INDEX + wrapped;
+};
 
 export function CarouselSection() {
   const [currentIndex, setCurrentIndex] = useState(START_INDEX);
@@ -46,12 +53,8 @@ export function CarouselSection() {
   };
 
   const handleTransitionEnd = () => {
-    if (currentIndex === START_INDEX + originalImages.length) {
-      jumpWithoutAnimation(START_INDEX);
-    }
-
-    if (currentIndex === START_INDEX - 1) {
-      jumpWithoutAnimation(START_INDEX + originalImages.length - 1);
+    if (currentIndex >= START_INDEX + TOTAL_IMAGES || currentIndex <= START_INDEX - 1) {
+      jumpWithoutAnimation(normalizeToRealIndex(currentIndex));
     }
   };
 
@@ -64,7 +67,7 @@ export function CarouselSection() {
   };
 
   const activeDotIndex =
-    ((currentIndex - START_INDEX) % originalImages.length + originalImages.length) % originalImages.length;
+    ((currentIndex - START_INDEX) % TOTAL_IMAGES + TOTAL_IMAGES) % TOTAL_IMAGES;
 
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
