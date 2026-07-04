@@ -11,7 +11,7 @@ export function StorySection() {
           <div className="flex justify-center lg:order-2">
             <div className="w-80 h-80 relative">
               <Image
-                src="/truck-drawing.jpg"
+                src="/local.jpeg"
                 alt="Camión de distribución de arepas"
                 fill
                 className="object-contain"

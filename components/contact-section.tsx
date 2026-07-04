@@ -1,8 +1,7 @@
 'use client';
 
+import { Mail, MessageCircle, Phone } from 'lucide-react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { MessageCircle, Phone, Mail } from 'lucide-react';
 
 export function ContactSection() {
   return (
@@ -28,8 +27,8 @@ export function ContactSection() {
             {
               icon: Phone,
               title: 'Teléfono',
-              description: 'Llámanos para hacer tu pedido',
-              action: '3126066360'
+              description: 'Llámanos para hacer tu pedido - 3126066360',
+              action: 'tel:+573126066360'
             },
             {
               icon: Mail,

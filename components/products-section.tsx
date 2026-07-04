@@ -9,28 +9,28 @@ const products = [
     id: 1,
     name: 'Arepa Normal',
     quantity: '5 unidades',
-    description: 'Perfecta para una comida rápida',
+    description: '',
     image: '/logo.png'
   },
   {
     id: 2,
     name: 'Arepa Normal',
     quantity: '10 unidades',
-    description: 'Para la familia completa',
+    description: '',
     image: '/logo.png'
   },
   {
     id: 3,
     name: 'Arepa Frisby',
     quantity: '50 unidades',
-    description: 'Ideal para eventos y negocios',
+    description: '',
     image: '/logo.png'
   },
   {
     id: 4,
     name: 'Arepa Burger',
     quantity: '10 unidades',
-    description: 'Rellenas y deliciosas',
+    description: '',
     image: '/logo.png'
   },
 ];
