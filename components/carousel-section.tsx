@@ -1,14 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 const originalImages = [
-  { src: '/carousel-1.jpg', alt: 'Arepas paquete 10 unidades' },
-  { src: '/carousel-2.jpg', alt: 'Arepas paquete 50 unidades' },
-  { src: '/carousel-3.jpg', alt: 'Arepas paquete individual' },
-  { src: '/carousel-4.jpg', alt: 'Arepas paquete individual rojo' },
+  { src: '/carousel-1.png', alt: 'Arepas paquete 10 unidades' },
+  { src: '/carousel-2.png', alt: 'Arepas paquete 50 unidades' },
+  { src: '/carousel-3.png', alt: 'Arepas paquete individual' },
+  { src: '/carousel-4.png', alt: 'Arepas paquete individual rojo' },
 ];
 
 const IMAGES_TO_SHOW = 3;
