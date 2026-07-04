@@ -13,41 +13,67 @@ const originalImages = [
 
 const IMAGES_TO_SHOW = 3;
 
-// Duplicate images for infinite carousel
-const carouselImages = [...originalImages, ...originalImages, ...originalImages];
+// Add edge clones to create a seamless infinite loop.
+const carouselImages = [
+  ...originalImages.slice(-IMAGES_TO_SHOW),
+  ...originalImages,
+  ...originalImages.slice(0, IMAGES_TO_SHOW),
+];
+
+const START_INDEX = IMAGES_TO_SHOW;
 
 export function CarouselSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(START_INDEX);
+  const [isTransitioning, setIsTransitioning] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1));
+      setCurrentIndex((prev: number) => prev + 1);
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    // Reset to beginning when reaching the end for infinite loop
-    if (currentIndex >= originalImages.length * 2) {
-      setCurrentIndex(0);
+  const jumpWithoutAnimation = (nextIndex: number) => {
+    setIsTransitioning(false);
+    setCurrentIndex(nextIndex);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setIsTransitioning(true);
+      });
+    });
+  };
+
+  const handleTransitionEnd = () => {
+    if (currentIndex === START_INDEX + originalImages.length) {
+      jumpWithoutAnimation(START_INDEX);
     }
-  }, [currentIndex]);
+
+    if (currentIndex === START_INDEX - 1) {
+      jumpWithoutAnimation(START_INDEX + originalImages.length - 1);
+    }
+  };
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+    setCurrentIndex((prev: number) => prev - 1);
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => prev + 1);
+    setCurrentIndex((prev: number) => prev + 1);
   };
+
+  const activeDotIndex =
+    ((currentIndex - START_INDEX) % originalImages.length + originalImages.length) % originalImages.length;
 
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
       <div className="relative w-full group">
         {/* Carousel Container */}
         <div className="relative w-full overflow-hidden rounded-lg shadow-lg">
-          <div className="flex gap-4 transition-transform duration-500 ease-in-out"
+          <div
+            className={`flex ease-in-out ${isTransitioning ? 'transition-transform duration-500' : ''}`}
+            onTransitionEnd={handleTransitionEnd}
             style={{ transform: `translateX(-${currentIndex * (100 / IMAGES_TO_SHOW)}%)` }}>
             {carouselImages.map((image, index) => (
               <div key={index} className="w-full flex-shrink-0" style={{ width: `${100 / IMAGES_TO_SHOW}%` }}>
@@ -86,9 +112,9 @@ export function CarouselSection() {
           {originalImages.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => setCurrentIndex(START_INDEX + index)}
               className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors ${
-                index === (currentIndex % originalImages.length) ? 'bg-primary' : 'bg-primary/30'
+                index === activeDotIndex ? 'bg-primary' : 'bg-primary/30'
               }`}
               aria-label={`Go to image ${index + 1}`}
             />
