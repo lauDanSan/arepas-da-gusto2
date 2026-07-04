@@ -9,7 +9,7 @@ export function StorySection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Image */}
           <div className="flex justify-center lg:order-2">
-            <div className="w-80 h-80 relative">
+            <div className="w-120 h-120 relative">
               <Image
                 src="/local.jpeg"
                 alt="Camión de distribución de arepas"
